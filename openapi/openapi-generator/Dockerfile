@@ -28,6 +28,8 @@ RUN mkdir /source && \
     cd openapi-generator && \
     git checkout $OPENAPI_GENERATOR_COMMIT
 
+RUN git config --system --add safe.directory '/source/openapi-generator'
+
 # Build it and persist local repository
 RUN chmod -R go+rwx /root && umask 0 && cd /source/openapi-generator && \
     mvn install -DskipTests -Dmaven.test.skip=true -pl modules/openapi-generator-maven-plugin -am && \
